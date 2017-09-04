@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RefreshScope
 public class TestController {
 
-	@Value("${nja-config.appname}")
+	@Value("${nja-config.appname:xxx}")
 	private String value;
 	
 	@GetMapping("/app-name")
