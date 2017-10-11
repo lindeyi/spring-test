@@ -1,6 +1,7 @@
 package com.bjnja.client;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +14,9 @@ public class TestController {
 	private String value;
 	
 	@GetMapping("/app-name")
-	public String test() {
-		return "APP-NAME:" + value;
+	@Cacheable(value="test", key="#id")
+	public String test(String id) {
+		System.out.println("===="+ id);
+		return "APP-NAME:" + value+ "===" + id;
 	}
 }
